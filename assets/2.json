@@ -1,0 +1,19 @@
+{
+    "name": "MBDTF",
+    "symbol": "",
+    "image": "02.png",
+    "properties": {
+      "files": [
+        {
+          "uri": "02.png",
+          "type": "image/png"
+        }
+      ],
+      "creators": [
+        {
+          "address": "F9nEwMjy8M2u6RVzMSSMbTtmrtueSjuvVuYmSPLfAeiF",
+          "share": 100
+        }
+      ]
+    }
+  }

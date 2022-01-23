@@ -1,0 +1,19 @@
+{
+    "name": "Blonde",
+    "symbol": "",
+    "image": "01.png",
+    "properties": {
+      "files": [
+        {
+          "uri": "01.png",
+          "type": "image/png"
+        }
+      ],
+      "creators": [
+        {
+          "address": "F9nEwMjy8M2u6RVzMSSMbTtmrtueSjuvVuYmSPLfAeiF",
+          "share": 100
+        }
+      ]
+    }
+  }
