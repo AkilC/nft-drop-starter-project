@@ -9,6 +9,9 @@
           "type": "image/png"
         }
       ],
+      "collection": {
+          "name": "Albums I 🤍"
+      },
       "creators": [
         {
           "address": "F9nEwMjy8M2u6RVzMSSMbTtmrtueSjuvVuYmSPLfAeiF",

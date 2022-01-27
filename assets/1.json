@@ -1,14 +1,17 @@
 {
     "name": "Blonde",
     "symbol": "",
-    "image": "01.png",
+    "image": "1.png",
     "properties": {
       "files": [
         {
-          "uri": "01.png",
+          "uri": "1.png",
           "type": "image/png"
         }
       ],
+      "collection": {
+        "name": "Albums I 🤍"
+      },
       "creators": [
         {
           "address": "F9nEwMjy8M2u6RVzMSSMbTtmrtueSjuvVuYmSPLfAeiF",

@@ -1,7 +1,7 @@
 {
     "name": "MBDTF",
     "symbol": "",
-    "image": "02.png",
+    "image": "2.png",
     "properties": {
       "files": [
         {
@@ -9,6 +9,9 @@
           "type": "image/png"
         }
       ],
+      "collection": {
+        "name": "Albums I 🤍"
+      },
       "creators": [
         {
           "address": "F9nEwMjy8M2u6RVzMSSMbTtmrtueSjuvVuYmSPLfAeiF",

@@ -5,7 +5,7 @@ import { MintLayout, TOKEN_PROGRAM_ID, Token } from '@solana/spl-token';
 import { sendTransactions } from './connection';
 import './CandyMachine.css';
 import CountdownTimer from '../CountdownTimer';
-//import nftData from './../.cache/devnet-temp.json';
+import nftData from './../.cache/devnet-temp.json';
 import {
   candyMachineProgram,
   TOKEN_METADATA_PROGRAM_ID,
@@ -23,6 +23,7 @@ const opts = {
 };
 
 const CandyMachine = ({ walletAddress }) => {
+
   const [candyMachine, setCandyMachine] = useState(null);
   const [machineStats, setMachineStats] = useState(null);
   const [mints, setMints] = useState([]);
@@ -111,12 +112,23 @@ const CandyMachine = ({ walletAddress }) => {
 
     var mintedItems = []; 
 
-    for(var i = 0; i < itemsRedeemed; i++){
-      mintedItems.push(nftData.items[i]);
+    //for(var i = 0; i < itemsRedeemed; i++){
+      //mintedItems.push(nftData.items[i]);
+    //}
+    
+    const genImageURL = async (url) => {
+      const response = await fetch(url);
+      const data = await response.json();
+      return ({ imageLink: data.image, name: data.name });
+    };
+    for (let i = 0; i < itemsRedeemed; i++) {
+      const nftLink = nftData.items[i].link;
+      const nftObj = await genImageURL(nftLink)
+      mintedItems.push(nftObj);
     }
 
-    setMints(mintedItems);
 
+    setMints(mintedItems);
 
     console.log({
       itemsAvailable,
@@ -125,6 +137,7 @@ const CandyMachine = ({ walletAddress }) => {
       goLiveData,
       goLiveDateTimeString,
       presale,
+      mintedItems
     });
   };
 
@@ -406,6 +419,8 @@ const CandyMachine = ({ walletAddress }) => {
     return [];
   };
 
+
+
   const renderMintedItems = () => {
     return <div className='gif-grid'> {
                   (mints.map(item => {
@@ -415,10 +430,12 @@ const CandyMachine = ({ walletAddress }) => {
                       }))
                   }
           </div>
+        
   } 
 
 
-  const renderDropTimer = () => {
+  // Create render function
+const renderDropTimer = () => {
   // Get the current date and dropDate in a JavaScript Date object
   const currentDate = new Date();
   const dropDate = new Date(candyMachine.state.goLiveData * 1000);
@@ -435,23 +452,28 @@ const CandyMachine = ({ walletAddress }) => {
 };
 
 return (
-  candyMachine.state && (
+  candyMachine && (
     <div className="machine-container">
-      {/* Add this at the beginning of our component */}
       {renderDropTimer()}
       <p>{`Items Minted: ${candyMachine.state.itemsRedeemed} / ${candyMachine.state.itemsAvailable}`}</p>
-      <button
-        className="cta-button mint-button"
-        onClick={mintToken}
-        disabled={isMinting}
-      >
-        Mint NFT
-      </button>
+        {/* Check to see if these properties are equal! */}
+        {candyMachine.state.itemsRedeemed === candyMachine.state.itemsAvailable ? (
+          <p className="sub-text">Sold Out 🙊</p>
+        ) : (
+          <button
+            className="cta-button mint-button"
+            onClick={mintToken}
+            disabled={isMinting}
+          >
+            Mint NFT
+          </button>
+        )}
       {mints.length > 0 && renderMintedItems()}
       {isLoadingMints && <p>LOADING MINTS...</p>}
     </div>
   )
 );
+
 
 };
 
